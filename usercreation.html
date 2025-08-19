@@ -64,7 +64,7 @@
 
   <!-- Horizontal Navigation Bar -->
   <nav
-    class="fixed top-0 left-0 w-full flex items-center justify-between bg-glass/70 backdrop-blur-md shadow border-b border-glass-accent/10 px-4 md:px-8 py-2 z-20"
+    class="fixed top-0 left-0 w-full flex items-center justify-between bg-glass/70 backdrop-blur-md shadow border-b border-glass-accent/10 px-4 md:px-8 py-2 z-20 "
     style="backdrop-filter: blur(16px);">
     <div class="flex items-center gap-6">
       <!-- Army Insignia SVG (star badge) and Brand -->
@@ -125,9 +125,15 @@
       </div>
     </div>
   </nav>  
-    <div id="mainContent" class="flex-1 flex flex-col transition-all duration-300 mt-20">    
+    <div id="mainContent" class="flex-1 flex flex-col transition-all duration-300 mt-10">    
 <!-- User Creation Section -->
-      <div id="user-creation" class="section hidden">
+      <div id="user-creation" class="section" style="
+    padding-right: 38px;
+    padding-bottom: 40px;
+    padding-top: 40px;
+    border-bottom-width: 0.800;
+    padding-left: 25px;
+">
         <h2 class="text-2xl font-bold  p-6">Create New User</h2>
         <form id="userForm"
           class="w-full rounded-2xl p-4 md:p-10 bg-white/20 backdrop-blur-xl border border-white/30 shadow-2xl ring-1 ring-white/20"
