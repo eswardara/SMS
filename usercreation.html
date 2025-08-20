@@ -23,7 +23,7 @@
             glass: {
               DEFAULT: '#18181b', // black glass
               dark: '#111113',
-              accent: '#dc2626', // red accent
+              accent: 'white', // red accent
             },
           },
         },
@@ -56,6 +56,9 @@
 
     .nav-tooltip {
       @apply absolute left-1/2 top-full mt-1 -translate-x-1/2 px-2 py-1 rounded bg-black/80 text-white text-xs opacity-0 pointer-events-none whitespace-nowrap z-50 transition-all duration-300;
+    }
+    .hidden{
+      display: none;
     }
   </style>
 </head>
@@ -136,11 +139,23 @@
 ">
         <h2 class="text-2xl font-bold p-6" style="
     padding-left: 0px;">Create New User</h2>
+    <!-- tabs -->
+    <div class="flex space-x-3 mb-8">
+      <button class="px-4 py-2 bg-white text-black rounded-full" data-tab="personal information"> Personal Information</button>
+      <button class="px-4 py-2 bg-neutral-800 text-gray-300 rounded-full"data-tab="military information">Military Information</button>
+      <button class="px-4 py-2 bg-neutral-800 text-gray-300 rounded-full">Address Information</button>
+      <button class="px-4 py-2 bg-neutral-800 text-gray-300 rounded-full">Emergency Contacts</button>
+      <button class="px-4 py-2 bg-neutral-800 text-gray-300 rounded-full"> Additional Information</button>
 
+      <!-- <button class="px-4 py-2 bg-neutral-800 text-gray-300 rounded-full">Questions</button> -->
+    </div>
         <form id="userForm"
           class="w-full rounded-2xl p-4 md:p-10 bg-white/20 backdrop-blur-xl border border-white/30 shadow-2xl ring-1 ring-white/20"
           style="box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.25);">
+
+          
     <!-- Personal Information -->
+
           <div class="mb-6">
             <h3 class="text-lg font-semibold mb-4 text-glass-accent">Personal Information</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -183,10 +198,11 @@
             </div>
           </div>
 
-
           <!-- Military Information -->
-          <div class="mb-6">
+           <div id="military information" class="tab-content hidden">
             <h3 class="text-lg font-semibold mb-4 text-glass-accent">Military Information</h3>
+          <div class="mb-6">
+            <!-- <h3 class="text-lg font-semibold mb-4 text-glass-accent">Military Information</h3> -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div>
                 <label class="block mb-2 font-semibold" for="username">Username</label>
@@ -252,6 +268,8 @@
               </div>
             </div>
           </div>
+          <!-- <div id="military information"></div> -->
+          </div>
 
           <!-- Address Information -->
           <div class="mb-6">
@@ -289,6 +307,9 @@
               </div>
             </div>
           </div>
+
+          <div id="address information"></div>
+          
 
           <!-- Emergency Contact -->
           <div class="mb-6">
@@ -328,6 +349,7 @@
               </div>
             </div>
           </div>
+          <div id="emergency Contact"></div>
 
           <!-- Additional Information -->
           <div class="mb-6">
@@ -377,6 +399,7 @@
               class="bg-glass-accent text-glass-dark px-6 py-2 rounded-lg font-bold hover:bg-glass-accent/80 transition">Create
               User</button>
           </div>
+        
         </form>
         <!-- User Table with Glassy Effect and Pagination -->
         <div class="mt-10">
@@ -886,6 +909,30 @@
       });
     }
       </script>
+      <!-- Script -->
+  <script>
+    const buttons = document.querySelectorAll(".tab-btn");
+    const contents = document.querySelectorAll(".tab-content");
+
+    buttons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        // Reset buttons
+        buttons.forEach(b => b.classList.remove("bg-white", "text-black"));
+        buttons.forEach(b => b.classList.add("bg-neutral-800", "text-gray-300"));
+
+        // Activate clicked button
+        btn.classList.remove("bg-neutral-800", "text-gray-300");
+        btn.classList.add("bg-white", "text-black");
+
+        // Hide all content
+        contents.forEach(c => c.classList.add("hidden"));
+
+        // Show selected content
+        const target = document.getElementById(btn.dataset.tab);
+        target.classList.remove("hidden");
+      });
+    });
+  </script>
 
 </body>
 
