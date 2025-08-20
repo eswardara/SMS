@@ -57,9 +57,6 @@
     .nav-tooltip {
       @apply absolute left-1/2 top-full mt-1 -translate-x-1/2 px-2 py-1 rounded bg-black/80 text-white text-xs opacity-0 pointer-events-none whitespace-nowrap z-50 transition-all duration-300;
     }
-    .hidden{
-      display: none;
-    }
   </style>
 </head>
 
@@ -139,14 +136,14 @@
 ">
         <h2 class="text-2xl font-bold p-6" style="
     padding-left: 0px;">Create New User</h2>
-    <!-- tabs -->
-    <div class="flex space-x-3 mb-8">
-      <button class="px-4 py-2 bg-white text-black rounded-full" data-tab="personal information"> Personal Information</button>
-      <button class="px-4 py-2 bg-neutral-800 text-gray-300 rounded-full"data-tab="military information">Military Information</button>
-      <button class="px-4 py-2 bg-neutral-800 text-gray-300 rounded-full">Address Information</button>
-      <button class="px-4 py-2 bg-neutral-800 text-gray-300 rounded-full">Emergency Contacts</button>
-      <button class="px-4 py-2 bg-neutral-800 text-gray-300 rounded-full"> Additional Information</button>
 
+    <div class="flex space-x-3 mb-8">
+      <a href="#personal information"><button class="px-4 py-2 bg-white text-black rounded-full">Personal Information</button></a>
+      <a href="#military information"></a><button class="px-4 py-2 bg-neutral-800 text-gray-300 rounded-full">Military Information</button></a>
+      <a href="#address information"></a><button class="px-4 py-2 bg-neutral-800 text-gray-300 rounded-full">Address Information</button></a>
+      <a href="#emergency contacts"></a><button class="px-4 py-2 bg-neutral-800 text-gray-300 rounded-full">Emergency Contacts</button></a>
+      <a href="#additional information"></a><button class="px-4 py-2 bg-neutral-800 text-gray-300 rounded-full"> Additional Information</button></a>
+      <div id="personal information"></div>
       <!-- <button class="px-4 py-2 bg-neutral-800 text-gray-300 rounded-full">Questions</button> -->
     </div>
         <form id="userForm"
@@ -155,7 +152,6 @@
 
           
     <!-- Personal Information -->
-
           <div class="mb-6">
             <h3 class="text-lg font-semibold mb-4 text-glass-accent">Personal Information</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -199,10 +195,8 @@
           </div>
 
           <!-- Military Information -->
-           <div id="military information" class="tab-content hidden">
-            <h3 class="text-lg font-semibold mb-4 text-glass-accent">Military Information</h3>
           <div class="mb-6">
-            <!-- <h3 class="text-lg font-semibold mb-4 text-glass-accent">Military Information</h3> -->
+            <h3 class="text-lg font-semibold mb-4 text-glass-accent">Military Information</h3>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div>
                 <label class="block mb-2 font-semibold" for="username">Username</label>
@@ -268,8 +262,7 @@
               </div>
             </div>
           </div>
-          <!-- <div id="military information"></div> -->
-          </div>
+          <div id="military information"></div>
 
           <!-- Address Information -->
           <div class="mb-6">
