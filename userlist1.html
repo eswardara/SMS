@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SMS User-list</title>
+  <link rel="shortcut icon" href="assets/images/favicon.png">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Leaflet CSS/JS CDN -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            glass: {
+              DEFAULT: '#18181b', // black glass
+              dark: '#111113',
+              accent: 'white', // red accent
+            },
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    body {
+      background: linear-gradient(135deg, #000000 0%, #040405 100%);
+    }
+
+    .card-glassy::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.07) 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .card-glassy>* {
+      position: relative;
+      z-index: 2;
+    }
+
+    .sidebar-tooltip,
+    .nav-tooltip {
+      @apply absolute left-full top-1/2 -translate-y-1/2 ml-2 px-2 py-1 rounded bg-black/80 text-white text-xs opacity-0 pointer-events-none whitespace-nowrap z-50 transition-all duration-300;
+    }
+
+    .nav-tooltip {
+      @apply absolute left-1/2 top-full mt-1 -translate-x-1/2 px-2 py-1 rounded bg-black/80 text-white text-xs opacity-0 pointer-events-none whitespace-nowrap z-50 transition-all duration-300;
+    }
+  </style>
+</head>
+
+<body class="min-h-screen flex flex-col dark bg-glass-dark text-white text-xs">
+
+  <!-- Horizontal Navigation Bar -->
+  <nav
+    class="fixed top-0 left-0 w-full flex items-center justify-between bg-glass/70 backdrop-blur-md shadow border-b border-glass-accent/10 px-4 md:px-8 py-2 z-20"
+    style="backdrop-filter: blur(16px);">
+    <div class="flex items-center gap-6">
+      <!-- Army Insignia SVG (star badge) and Brand -->
+      <div class="flex items-center gap-2">
+        <img src="assets/images/logo.png" style="width:55%;display:inline;" class="object-center md:object-top" />
+        <span class="text-base font-bold tracking-wide text-glass-accent hidden sm:inline">SMS</span>
+      </div>
+      <div class="flex gap-2 md:gap-4">
+        <a href="dashboard.html" class="px-3 py-2 rounded-lg flex items-center hover:bg-glass-accent/10 transition group nav-btn">Dashboard</a>
+        <a href="usercreation.html" class="px-3 py-2 rounded-lg flex items-center hover:bg-glass-accent/10 transition group nav-btn"> 
+          User Creation</a>
+        <a href="userlist1.html" class="px-3 py-2 rounded-lg flex items-center hover:bg-glass-accent/10 transition group nav-btn"> 
+          User List</a>
+        <a href="settingsPage.html" class="px-3 py-2 rounded-lg flex items-center hover:bg-glass-accent/10 transition group nav-btn"> 
+          Settings</a>
+      </div>
+    </div>
+    <div class="flex items-center gap-2">
+      <!-- Notifications Bell Icon -->
+      <button aria-label="Notifications"
+        class="relative mx-2 p-2 rounded-full hover:bg-glass-accent/20 transition focus:outline-none">
+        <svg class="w-7 h-7 text-glass-accent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M15 17h5l-1.405-1.405A2.032 2.032 0 0 1 18 14.158V11a6.002 6.002 0 0 0-4-5.659V5a2 2 0 1 0-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 1 1-6 0v-1m6 0H9" />
+        </svg>
+        <!-- <span class="absolute top-1 right-1 w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span> -->
+      </button>
+      <!-- User Profile Dropdown -->
+      <div class="relative ml-2">
+        <button id="userMenuBtn" aria-label="User menu"
+          class="flex items-center gap-2 p-2 rounded-full hover:bg-glass-accent/20 transition focus:outline-none">
+          <img src="https://ui-avatars.com/api/?name=SMS+User&background=&color=fff&rounded=true&size=32"
+            alt="User Avatar" class="w-8 h-8 rounded-full border-2 border-glass-accent" />
+          <span class="hidden md:inline text-white font-medium">SMS User</span>
+          <svg class="w-4 h-4 text-glass-accent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div id="userDropdown" class="hidden absolute right-0 mt-2 w-40 bg-glass/90 rounded-lg shadow-lg py-2 z-50">
+          <a href="#" class="block px-4 py-2 text-white hover:bg-glass-accent/20">Profile</a>
+          <a href="#" class="block px-4 py-2 text-white hover:bg-glass-accent/20">Settings</a>
+          <div class="border-t border-glass-accent/20 my-1"></div>
+          <a href="index.html" class="block px-4 py-2 text-white hover:bg-glass-accent/20">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Content -->
+  <main class="px-6 py-10">
+    <!-- <h1 class="text-3xl font-bold text-white mb-6">User List</h1> -->
+<h1 class="text-3xl font-bold text-white mb-6 mt-10">User List</h1>
+
+    <div class="overflow-hidden shadow-2xl border border-gray-700/50 bg-gray-900/80 backdrop-blur-lg"></div>
+    <!-- <div class="overflow-hidden rounded-2xl shadow-2xl border border-gray-700/50 bg-gray-900/80 backdrop-blur-lg"> -->
+      <table class="min-w-full text-left text-gray-300">
+        <thead class="bg-gradient-to-r from-gray-800 to-gray-700 text-gray-200 uppercase text-sm">
+          <tr>
+            <th class="px-6 py-3">Username</th>
+            <th class="px-6 py-3">Email</th>
+            <th class="px-6 py-3">Role</th>
+            <th class="px-6 py-3">Department</th>
+            <th class="px-6 py-3">Status</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-700">
+          <tr class="hover:bg-gray-800/60 transition">
+            <td class="px-6 py-4 font-medium">john.doe</td>
+            <td class="px-6 py-4">john@army.com</td>
+            <td class="px-6 py-4">Officer</td>
+            <td class="px-6 py-4">Infantry</td>
+            <td class="px-6 py-4"><span class="px-2 py-1 text-xs rounded-full bg-green-700 text-green-200">Active</span></td>
+          </tr>
+          <tr class="hover:bg-gray-800/60 transition">
+            <td class="px-6 py-4 font-medium">priya.singh</td>
+            <td class="px-6 py-4">priya@army.com</td>
+            <td class="px-6 py-4">Soldier</td>
+            <td class="px-6 py-4">Artillery</td>
+            <td class="px-6 py-4"><span class="px-2 py-1 text-xs rounded-full bg-green-700 text-green-200">Active</span></td>
+          </tr>
+          <tr class="hover:bg-gray-800/60 transition">
+            <td class="px-6 py-4 font-medium">amit.kumar</td>
+            <td class="px-6 py-4">amit@army.com</td>
+            <td class="px-6 py-4">Admin</td>
+            <td class="px-6 py-4">Administration</td>
+            <td class="px-6 py-4"><span class="px-2 py-1 text-xs rounded-full bg-green-700 text-green-200">Active</span></td>
+          </tr>
+          <tr class="hover:bg-gray-800/60 transition">
+            <td class="px-6 py-4 font-medium">sara.ali</td>
+            <td class="px-6 py-4">sara@army.com</td>
+            <td class="px-6 py-4">Officer</td>
+            <td class="px-6 py-4">Medical</td>
+            <td class="px-6 py-4"><span class="px-2 py-1 text-xs rounded-full bg-green-700 text-green-200">Active</span></td>
+          </tr>
+          <tr class="hover:bg-gray-800/60 transition">
+            <td class="px-6 py-4 font-medium">mike.jones</td>
+            <td class="px-6 py-4">mike@army.com</td>
+            <td class="px-6 py-4">Soldier</td>
+            <td class="px-6 py-4">Infantry</td>
+            <td class="px-6 py-4"><span class="px-2 py-1 text-xs rounded-full bg-red-700 text-red-200">Inactive</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Pagination -->
+      <div class="flex justify-center items-center space-x-2 py-4 bg-gray-800/60">
+        <button class="px-3 py-1 rounded-full bg-gray-700 hover:bg-gray-600 text-white">1</button>
+        <button class="px-3 py-1 rounded-full bg-gray-700 hover:bg-gray-600 text-gray-300">2</button>
+        <button class="px-3 py-1 rounded-full bg-gray-700 hover:bg-gray-600 text-gray-300">3</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <!-- <footer class="text-center text-gray-400 text-sm py-6">© 2025 Soldier Management System</footer> -->
+<footer class="w-full bg-glass/70 p-8 backdrop-blur-md border-t border-glass-accent/10 text-center py-2 text-xs text-white mt-auto" style="backdrop-filter: blur(16px);">
+    &copy; 2025 Soldier Management System
+  </footer>
+</body>
+</html>
