@@ -90,13 +90,13 @@
           <path stroke-linecap="round" stroke-linejoin="round"
             d="M15 17h5l-1.405-1.405A2.032 2.032 0 0 1 18 14.158V11a6.002 6.002 0 0 0-4-5.659V5a2 2 0 1 0-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 1 1-6 0v-1m6 0H9" />
         </svg>
-        <!-- <span class="absolute top-1 right-1 w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span> -->
+        <span class="absolute top-1 right-1 w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
       </button>
       <!-- User Profile Dropdown -->
       <div class="relative ml-2">
         <button id="userMenuBtn" aria-label="User menu"
           class="flex items-center gap-2 p-2 rounded-full hover:bg-glass-accent/20 transition focus:outline-none">
-          <img src="https://ui-avatars.com/api/?name=SMS+User&background=f&color=fff&rounded=true&size=32"
+          <img src="https://ui-avatars.com/api/?name=SMS+User&background=3b82f6&color=fff&rounded=true&size=32"
             alt="User Avatar" class="w-8 h-8 rounded-full border-2 border-glass-accent" />
           <span class="hidden md:inline text-white font-medium">SMS User</span>
           <svg class="w-4 h-4 text-glass-accent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -201,7 +201,7 @@
               <div>
                 <label class="block mb-2 font-semibold" for="username">Username</label>
                 <input
- class="bg-black border border-gray-700 rounded-lg px-4 py-2 text-white w-full"y
+ class="bg-black border border-gray-700 rounded-lg px-4 py-2 text-white w-full"
                   type="text" id="username" placeholder="Enter username" required>
               </div>
               <div>
@@ -405,14 +405,16 @@
                               </div>
                                <div class="flex justify-between mt-4">
     <button class="prev-btn px-4 py-2 bg-gray-600 text-white rounded">Previous</button>
-    <!-- <button class="next-btn px-4 py-2 bg-blue-600 text-white rounded">Next</button>  -->
+    <button class="next-btn px-4 py-2 bg-blue-600 text-white rounded">Next</button>
   </div>
                                 </div>
   
 
-    <footer class="w-full bg-glass/70 backdrop-blur-md border-t border-glass-accent/10 text-center py-2 text-xs text-white mt-auto" style="backdrop-filter: blur(16px);">
-    &copy; 2025 Soldier Management System
-  </footer>
+       <footer class="fixed bottom-0 left-0 w-full bg-glass/70 backdrop-blur-md border-t border-glass-accent/10 
+                 text-center py-2 text-xs text-white"
+        style="backdrop-filter: blur(16px);">
+  &copy; 2025 Soldier Management System
+</footer>
 <script>
   const buttons = document.querySelectorAll(".tab-btn");
   const contents = document.querySelectorAll(".tab-content");
