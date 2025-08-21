@@ -60,7 +60,7 @@
   </style>
 </head>
 
-<body class="min-h-screen flex flex-col dark bg-glass-dark text-white text-sm" >
+<body class="min-h-screen flex flex-col dark bg-glass-dark text-white text-xs" >
 
   <!-- Horizontal Navigation Bar -->
   <nav
@@ -90,13 +90,13 @@
           <path stroke-linecap="round" stroke-linejoin="round"
             d="M15 17h5l-1.405-1.405A2.032 2.032 0 0 1 18 14.158V11a6.002 6.002 0 0 0-4-5.659V5a2 2 0 1 0-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 1 1-6 0v-1m6 0H9" />
         </svg>
-        <!-- <span class="absolute top-1 right-1 w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span> -->
+        <span class="absolute top-1 right-1 w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
       </button>
       <!-- User Profile Dropdown -->
       <div class="relative ml-2">
         <button id="userMenuBtn" aria-label="User menu"
           class="flex items-center gap-2 p-2 rounded-full hover:bg-glass-accent/20 transition focus:outline-none">
-          <img src="https://ui-avatars.com/api/?name=SMS+User&background=&color=fff&rounded=true&size=32"
+          <img src="https://ui-avatars.com/api/?name=SMS+User&background=3b82f6&color=fff&rounded=true&size=32"
             alt="User Avatar" class="w-8 h-8 rounded-full border-2 border-glass-accent" />
           <span class="hidden md:inline text-white font-medium">SMS User</span>
           <svg class="w-4 h-4 text-glass-accent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -124,14 +124,25 @@
         <h2 class="text-2xl font-bold p-6" style="
     padding-left: 0px;">Create New User</h2>
 
-    <div class="flex space-x-3 mb-8">
-     <button class="px-4 py-2 bg-white text-black rounded-full">Personal Information</button>
-    <button class="px-4 py-2 bg-neutral-800 text-gray-300 rounded-full">Military Information</button>
-      <button class="px-4 py-2 bg-neutral-800 text-gray-300 rounded-full">Address Information</button>
-      <button class="px-4 py-2 bg-neutral-800 text-gray-300 rounded-full">Emergency Contacts</button>
-     </a><button class="px-4 py-2 bg-neutral-800 text-gray-300 rounded-full"> Additional Information</button>
-    </div>
+   <div class="flex space-x-3 mb-8 text-xs">
+  <button class="tab-btn px-4 py-2 bg-white text-black rounded-full" data-tab="personal-info">
+    Personal Information
+  </button>
+  <button class="tab-btn px-4 py-2 bg-neutral-800 text-gray-300 rounded-full" data-tab="military-info">
+    Military Information
+  </button>
+  <button class="tab-btn px-4 py-2 bg-neutral-800 text-gray-300 rounded-full" data-tab="address-info">
+    Address Information
+  </button>
+  <button class="tab-btn px-4 py-2 bg-neutral-800 text-gray-300 rounded-full" data-tab="emergency-info">
+    Emergency Contacts
+  </button>
+  <button class="tab-btn px-4 py-2 bg-neutral-800 text-gray-300 rounded-full" data-tab="additional-info">
+    Additional Information
+  </button>
+</div>
      <!-- Personal Information -->
+      <div id="personal-info" class="tab-content">
           <div class="mb-6">
             <h3 class="text-lg font-semibold mb-4 text-glass-accent">Personal Information</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -167,13 +178,24 @@
               </div>
             </div>
           </div>
+          <!-- <div class="flex justify-between mt-4"> -->
+    <!-- Create New User Button -->
+    <!-- <button type="button" onclick="createNewUser()" 
+      class="px-4 py-2 bg-green-600 text-white rounded">
+       Create New User
+    </button> -->
 
+           <div class="flex justify-end mt-4">
+    <button class="next-btn px-4 py-2 bg-blue-600 text-white rounded">Next</button>
+  </div>
 </section>
+</div>
 
 
 
        <!-- Military Information -->
-          <div class="mb-6">
+        <div id="military-info" class="tab-content hidden">
+                    <div class="mb-6">
             <h3 class="text-lg font-semibold mb-4 text-glass-accent">Military Information</h3>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div>
@@ -239,11 +261,15 @@
                   type="date" id="joinDate" required/>
               </div>
             </div>
-          </div>
-          <div id="military information"></div>
-</section>  
+             <div class="flex justify-between mt-4">
+    <button class="prev-btn px-4 py-2 bg-gray-600 text-white rounded">Previous</button>
+    <button class="next-btn px-4 py-2 bg-blue-600 text-white rounded">Next</button>
+  </div> 
+            </div>
+             </div>
    <!-- Address Information -->
-          <div class="mb-6">
+    <div id="address-info" class="tab-content hidden">
+                <div class="mb-6">
             <h3 class="text-lg font-semibold mb-4 text-glass-accent">Address Information</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div class="md:col-span-2">
@@ -278,8 +304,13 @@
               </div>
             </div>
           </div>
-
+           <div class="flex justify-between mt-4">
+    <button class="prev-btn px-4 py-2 bg-gray-600 text-white rounded">Previous</button>
+    <button class="next-btn px-4 py-2 bg-blue-600 text-white rounded">Next</button>
+  </div>
+</div>
            <!-- Emergency Contact -->
+            <div id="emergency-info" class="tab-content hidden">
           <div class="mb-6">
             <h3 class="text-lg font-semibold mb-4 text-glass-accent">Emergency Contact</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -317,8 +348,13 @@
               </div>
             </div>
           </div>
-
+           <div class="flex justify-between mt-4">
+    <button class="prev-btn px-4 py-2 bg-gray-600 text-white rounded">Previous</button>
+    <button class="next-btn px-4 py-2 bg-blue-600 text-white rounded">Next</button>
+  </div>
+            </div>
             <!-- Additional Information -->
+             <div id="additional-info" class="tab-content hidden">
           <div class="mb-6">
             <h3 class="text-lg font-semibold mb-4 text-glass-accent">Additional Information</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -356,42 +392,70 @@
               <textarea
                class="bg-black border border-gray-700 rounded-lg px-4 py-2 text-white w-full"
                 id="notes" rows="3" placeholder="Enter any additional notes"></textarea>
-            </div>
-          </div>
-
-
+                 <div class="grid grid-cols-2 gap-4 mb-4"> 
+                <input type="text" placeholder="Function" value="Design"
+                   class="bg-black border border-gray-700 rounded-lg p-3 text-white" />
+                   <input type="text" placeholder="Job Title" value="Team Lead designer"
+                      class="bg-black border border-gray-700 rounded-lg p-3 text-white" /> 
+                     </div> 
+                        <textarea placeholder="Responsibilities"
+                           class="w-full bg-black border border-gray-700 rounded-lg p-3 text-white h-28"></textarea> 
+                           </section>
+                             </div>
+                              </div>
+                               <div class="flex justify-between mt-4">
+    <button class="prev-btn px-4 py-2 bg-gray-600 text-white rounded">Previous</button>
+    <button class="next-btn px-4 py-2 bg-blue-600 text-white rounded">Next</button>
+  </div>
+                                </div>
   
 
-    <footer class="w-full bg-glass/70 backdrop-blur-md border-t border-glass-accent/10 text-center py-2 text-xs text-white mt-auto" style="backdrop-filter: blur(16px);">
-    &copy; 2025 Soldier Management System
-  </footer>
-   
-      
-      <!-- Script -->
-  <script>
-    const buttons = document.querySelectorAll(".tab-btn");
-    const contents = document.querySelectorAll(".tab-content");
+       <footer class="fixed bottom-0 left-0 w-full bg-glass/70 backdrop-blur-md border-t border-glass-accent/10 
+                 text-center py-2 text-xs text-white"
+        style="backdrop-filter: blur(16px);">
+  &copy; 2025 Soldier Management System
+</footer>
+<script>
+  const buttons = document.querySelectorAll(".tab-btn");
+  const contents = document.querySelectorAll(".tab-content");
 
-    buttons.forEach(btn => {
-      btn.addEventListener("click", () => {
-        // Reset buttons
-        buttons.forEach(b => b.classList.remove("bg-white", "text-black"));
-        buttons.forEach(b => b.classList.add("bg-neutral-800", "text-gray-300"));
-
-        // Activate clicked button
-        btn.classList.remove("bg-neutral-800", "text-gray-300");
-        btn.classList.add("bg-white", "text-black");
-
-        // Hide all content
-        contents.forEach(c => c.classList.add("hidden"));
-
-        // Show selected content
-        const target = document.getElementById(btn.dataset.tab);
-        target.classList.remove("hidden");
-      });
+  function showTab(index) {
+    // reset buttons
+    buttons.forEach((b, i) => {
+      b.classList.remove("bg-white", "text-black");
+      b.classList.add("bg-neutral-800", "text-gray-300");
+      contents[i].classList.add("hidden");
     });
-  </script>
 
+    // show active tab
+    buttons[index].classList.add("bg-white", "text-black");
+    buttons[index].classList.remove("bg-neutral-800", "text-gray-300");
+    contents[index].classList.remove("hidden");
+  }
+
+  // top navigation
+  buttons.forEach((btn, i) => {
+    btn.addEventListener("click", () => showTab(i));
+  });
+
+  // next button
+  document.querySelectorAll(".next-btn").forEach((btn, i) => {
+    btn.addEventListener("click", () => {
+      if (i < contents.length - 1) showTab(i + 1);
+    });
+  });
+
+  // prev button (FIXED)
+  document.querySelectorAll(".prev-btn").forEach((btn, i) => {
+    btn.addEventListener("click", () => {
+      const currentIndex = Array.from(contents).findIndex(c => !c.classList.contains("hidden"));
+      if (currentIndex > 0) showTab(currentIndex - 1);
+    });
+  });
+
+  // default to first tab
+  showTab(0);
+</script>
 
 </body>
 
