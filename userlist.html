@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SMS User-list</title>
+  <title>SMS Dashboard</title>
   <link rel="shortcut icon" href="assets/images/favicon.png">
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -58,7 +58,7 @@
     }
   </style>
 </head>
-
+ 
 <body class="min-h-screen flex flex-col dark bg-glass-dark text-white text-xs">
 
   <!-- Horizontal Navigation Bar -->
@@ -75,7 +75,7 @@
         <a href="dashboard.html" class="px-3 py-2 rounded-lg flex items-center hover:bg-glass-accent/10 transition group nav-btn">Dashboard</a>
         <a href="usercreation.html" class="px-3 py-2 rounded-lg flex items-center hover:bg-glass-accent/10 transition group nav-btn"> 
           User Creation</a>
-        <a href="userlist1.html" class="px-3 py-2 rounded-lg flex items-center hover:bg-glass-accent/10 transition group nav-btn"> 
+        <a href="userlist.html" class="px-3 py-2 rounded-lg flex items-center hover:bg-glass-accent/10 transition group nav-btn"> 
           User List</a>
         <a href="settingsPage.html" class="px-3 py-2 rounded-lg flex items-center hover:bg-glass-accent/10 transition group nav-btn"> 
           Settings</a>
@@ -96,7 +96,7 @@
         <button id="userMenuBtn" aria-label="User menu"
           class="flex items-center gap-2 p-2 rounded-full hover:bg-glass-accent/20 transition focus:outline-none">
           <img src="https://ui-avatars.com/api/?name=SMS+User&background=&color=fff&rounded=true&size=32"
-            alt="User Avatar" class="w-8 h-8 rounded-full border-2 border-glass-accent" />
+            alt="User Avatar" class="w-8 h-8 rounded-full border-2 border-glass-accent "/>
           <span class="hidden md:inline text-white font-medium">SMS User</span>
           <svg class="w-4 h-4 text-glass-accent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
@@ -104,7 +104,7 @@
         </button>
         <div id="userDropdown" class="hidden absolute right-0 mt-2 w-40 bg-glass/90 rounded-lg shadow-lg py-2 z-50">
           <a href="#" class="block px-4 py-2 text-white hover:bg-glass-accent/20">Profile</a>
-          <a href="#" class="block px-4 py-2 text-white hover:bg-glass-accent/20">Settings</a>
+          <a href="settingsPage.html" class="block px-4 py-2 text-white hover:bg-glass-accent/20">Settings</a>
           <div class="border-t border-glass-accent/20 my-1"></div>
           <a href="index.html" class="block px-4 py-2 text-white hover:bg-glass-accent/20">Logout</a>
         </div>
@@ -114,13 +114,11 @@
 
   <!-- Content -->
   <main class="px-6 py-10">
-    <!-- <h1 class="text-3xl font-bold text-white mb-6">User List</h1> -->
-<h1 class="text-3xl font-bold text-white mb-6 mt-10">User List</h1>
+    <h1 class="text-3xl font-bold text-white mb-6 mt-10">User List</h1>
 
-    <div class="overflow-hidden shadow-2xl border border-gray-700/50 bg-gray-900/80 backdrop-blur-lg"></div>
-    <!-- <div class="overflow-hidden rounded-2xl shadow-2xl border border-gray-700/50 bg-gray-900/80 backdrop-blur-lg"> -->
+    <div class="overflow-hidden shadow-2xl border border-gray-700/50 bg-gray-900/80 backdrop-blur-lg">
       <table class="min-w-full text-left text-gray-300">
-        <thead class="bg-neutral-800  text-gray-200 uppercase text-sm">
+        <thead class="bg-neutral-800 text-gray-200 uppercase text-sm">
           <tr>
             <th class="px-6 py-3">Username</th>
             <th class="px-6 py-3">Email</th>
@@ -129,57 +127,122 @@
             <th class="px-6 py-3">Status</th>
           </tr>
         </thead>
-        <tbody class="divide-y divide-gray-700">
-          <tr class="hover:bg-gray-800/60 transition">
-            <td class="px-6 py-4 font-medium">john.doe</td>
-            <td class="px-6 py-4">john@army.com</td>
-            <td class="px-6 py-4">Officer</td>
-            <td class="px-6 py-4">Infantry</td>
-            <td class="px-6 py-4"><span class="px-2 py-1 text-xs rounded-full bg-green-700 text-green-200">Active</span></td>
-          </tr>
-          <tr class="hover:bg-gray-800/60 transition">
-            <td class="px-6 py-4 font-medium">priya.singh</td>
-            <td class="px-6 py-4">priya@army.com</td>
-            <td class="px-6 py-4">Soldier</td>
-            <td class="px-6 py-4">Artillery</td>
-            <td class="px-6 py-4"><span class="px-2 py-1 text-xs rounded-full bg-green-700 text-green-200">Active</span></td>
-          </tr>
-          <tr class="hover:bg-gray-800/60 transition">
-            <td class="px-6 py-4 font-medium">amit.kumar</td>
-            <td class="px-6 py-4">amit@army.com</td>
-            <td class="px-6 py-4">Admin</td>
-            <td class="px-6 py-4">Administration</td>
-            <td class="px-6 py-4"><span class="px-2 py-1 text-xs rounded-full bg-green-700 text-green-200">Active</span></td>
-          </tr>
-          <tr class="hover:bg-gray-800/60 transition">
-            <td class="px-6 py-4 font-medium">sara.ali</td>
-            <td class="px-6 py-4">sara@army.com</td>
-            <td class="px-6 py-4">Officer</td>
-            <td class="px-6 py-4">Medical</td>
-            <td class="px-6 py-4"><span class="px-2 py-1 text-xs rounded-full bg-green-700 text-green-200">Active</span></td>
-          </tr>
-          <tr class="hover:bg-gray-800/60 transition">
-            <td class="px-6 py-4 font-medium">mike.jones</td>
-            <td class="px-6 py-4">mike@army.com</td>
-            <td class="px-6 py-4">Soldier</td>
-            <td class="px-6 py-4">Infantry</td>
-            <td class="px-6 py-4"><span class="px-2 py-1 text-xs rounded-full bg-red-700 text-red-200">Inactive</span></td>
-          </tr>
-        </tbody>
+        <!-- 🔹 Dynamic tbody -->
+        <tbody id="userTable" class="divide-y divide-gray-700"></tbody>
       </table>
 
-      <!-- Pagination -->
-      <div class="flex justify-center items-center space-x-2 py-4 bg-neutral-800/60">
-        <button class="px-3 py-1 rounded-full bg-black hover:bg-gray-600 text-white">1</button>
-        <button class="px-3 py-1 rounded-full bg-black hover:bg-gray-600 text-gray-300">2</button>
-        <button class="px-3 py-1 rounded-full bg-black hover:bg-gray-600 text-gray-300">3</button>
-      </div>
+      <!-- 🔹 Dynamic Pagination -->
+      <div id="paginationControls" class="flex justify-center items-center space-x-2 py-4 bg-neutral-800/60"></div>
     </div>
   </main>
 
-  <!-- Footer -->
-  <!-- <footer class="text-center text-gray-400 text-sm py-6">© 2025 Soldier Management System</footer> -->
-<footer class="w-full bg-glass/70 p-8 backdrop-blur-md border-t border-glass-accent/10 text-center py-2 text-xs text-white mt-auto" style="backdrop-filter: blur(16px);">
+  <script>
+    // Dummy user data
+    const users = [
+      { username: "john.doe", email: "john@army.com", role: "Officer", dept: "Infantry", status: "Active" },
+      { username: "priya.singh", email: "priya@army.com", role: "Soldier", dept: "Artillery", status: "Active" },
+      { username: "amit.kumar", email: "amit@army.com", role: "Admin", dept: "Administration", status: "Active" },
+      { username: "sara.ali", email: "sara@army.com", role: "Officer", dept: "Medical", status: "Active" },
+      { username: "mike.jones", email: "mike@army.com", role: "Soldier", dept: "Infantry", status: "Inactive" },
+       { username: "joshi.foe", email: "joshi@army.com", role: "Admin", dept: "Administration", status: "Active" },
+      { username: "koushal.singh", email: "koushal@army.com", role: "Soldier", dept: "Artillery", status: "Active" },
+      { username: "yash.kumar", email: "yash@army.com", role: "Admin", dept: "Administration", status: "Active" },
+      { username: "sharath.ali", email: "sharath@army.com", role: "Officer", dept: "Medical", status: "Active" },
+      { username: "mikel.joe", email: "mikel@army.com", role: "Soldier", dept: "Infantry", status: "Inactive" },
+      { username: "rajiv.verma", email: "rajiv@army.com", role: "Officer", dept: "Signals", status: "Active" },
+      { username: "lisa.thomas", email: "lisa@army.com", role: "Soldier", dept: "Engineering", status: "Active" },
+      { username: "peter.wilson", email: "peter@army.com", role: "Admin", dept: "Logistics", status: "Inactive" },
+      { username: "anita.rao", email: "anita@army.com", role: "Officer", dept: "Medical", status: "Active" },
+      { username: "george.martin", email: "george@army.com", role: "Soldier", dept: "Infantry", status: "Active" },
+       { username: "yash.kumar", email: "yash@army.com", role: "Admin", dept: "Administration", status: "Active" },
+      { username: "sharath.ali", email: "sharath@army.com", role: "Officer", dept: "Medical", status: "Active" },
+      { username: "mikel.joe", email: "mikel@army.com", role: "Soldier", dept: "Infantry", status: "Inactive" },
+      { username: "rajiv.verma", email: "rajiv@army.com", role: "Officer", dept: "Signals", status: "Active" },
+      { username: "lisa.thomas", email: "lisa@army.com", role: "Soldier", dept: "Engineering", status: "Active" },
+      { username: "peter.wilson", email: "peter@army.com", role: "Admin", dept: "Logistics", status: "Inactive" },
+      { username: "anita.rao", email: "anita@army.com", role: "Officer", dept: "Medical", status: "Active" },
+       { username: "yash.kumar", email: "yash@army.com", role: "Admin", dept: "Administration", status: "Active" },
+      { username: "sharath.ali", email: "sharath@army.com", role: "Officer", dept: "Medical", status: "Active" },
+      { username: "mikel.joe", email: "mikel@army.com", role: "Soldier", dept: "Infantry", status: "Inactive" },
+      { username: "rajiv.verma", email: "rajiv@army.com", role: "Officer", dept: "Signals", status: "Active" },
+      { username: "lisa.thomas", email: "lisa@army.com", role: "Soldier", dept: "Engineering", status: "Active" },
+      { username: "peter.wilson", email: "peter@army.com", role: "Admin", dept: "Logistics", status: "Inactive" },
+      { username: "anita.rao", email: "anita@army.com", role: "Officer", dept: "Medical", status: "Active" },
+      { username: "mikel.joe", email: "mikel@army.com", role: "Soldier", dept: "Infantry", status: "Inactive" },
+      { username: "rajiv.verma", email: "rajiv@army.com", role: "Officer", dept: "Signals", status: "Active" },
+      { username: "lisa.thomas", email: "lisa@army.com", role: "Soldier", dept: "Engineering", status: "Active" },
+      { username: "peter.wilson", email: "peter@army.com", role: "Admin", dept: "Logistics", status: "Inactive" },
+     
+    ];
+
+    const rowsPerPage = 9;
+    let currentPage = 1;
+
+    function renderTable() {
+      const tbody = document.getElementById("userTable");
+      tbody.innerHTML = "";
+
+      const start = (currentPage - 1) * rowsPerPage;
+      const end = start + rowsPerPage;
+      const pageUsers = users.slice(start, end);
+
+      pageUsers.forEach(u => {
+        tbody.innerHTML += `
+          <tr class="hover:bg-gray-800/60 transition">
+            <td class="px-6 py-4 font-medium">${u.username}</td>
+            <td class="px-6 py-4">${u.email}</td>
+            <td class="px-6 py-4">${u.role}</td>
+            <td class="px-6 py-4">${u.dept}</td>
+            <td class="px-6 py-4">
+              <span class="px-2 py-1 text-xs rounded-full ${u.status === 'Active' ? 'bg-green-700 text-green-200' : 'bg-red-700 text-red-200'}">${u.status}</span>
+            </td>
+          </tr>
+        `;
+      });
+    }
+
+    function renderPagination() {
+      const controls = document.getElementById("paginationControls");
+      controls.innerHTML = "";
+
+      const totalPages = Math.ceil(users.length / rowsPerPage);
+
+      for (let i = 1; i <= totalPages; i++) {
+        controls.innerHTML += `
+          <button onclick="goToPage(${i})"
+            class="px-3 py-1 rounded-full ${i === currentPage ? 'bg-gray-600 text-white' : 'bg-black text-gray-300 hover:bg-gray-600'}">
+            ${i}
+          </button>
+        `;
+      }
+    }
+
+    function goToPage(page) {
+      currentPage = page;
+      renderTable();
+      renderPagination();
+    }
+
+    // Initial render
+    renderTable();
+    renderPagination();
+        // User profile dropdown
+    const userMenuBtn = document.getElementById('userMenuBtn');
+    const userDropdown = document.getElementById('userDropdown');
+    if (userMenuBtn && userDropdown) {
+      userMenuBtn.addEventListener('click', () => {
+        userDropdown.classList.toggle('hidden');
+      });
+      document.addEventListener('click', (e) => {
+        if (!userMenuBtn.contains(e.target) && !userDropdown.contains(e.target)) {
+          userDropdown.classList.add('hidden');
+        }
+      });
+    }
+  </script>
+
+  <footer class="w-full bg-glass/70 p-8 backdrop-blur-md border-t border-glass-accent/10 text-center py-2 text-xs text-white mt-auto"
+    style="backdrop-filter: blur(16px);">
     &copy; 2025 Soldier Management System
   </footer>
   <script>
