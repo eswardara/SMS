@@ -456,7 +456,21 @@
   // default to first tab
   showTab(0);
 </script>
-
+<script>
+     // User profile dropdown
+    const userMenuBtn = document.getElementById('userMenuBtn');
+    const userDropdown = document.getElementById('userDropdown');
+    if (userMenuBtn && userDropdown) {
+      userMenuBtn.addEventListener('click', () => {
+        userDropdown.classList.toggle('hidden');
+      });
+      document.addEventListener('click', (e) => {
+        if (!userMenuBtn.contains(e.target) && !userDropdown.contains(e.target)) {
+          userDropdown.classList.add('hidden');
+        }
+      });
+    }
+    </script>
 </body>
 
 </html>
