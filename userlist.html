@@ -199,7 +199,7 @@
   <main class="px-6 py-10">
     <h1 class="text-3xl font-bold text-white mb-6 mt-10">User List</h1>
 
-    <div class="overflow-hidden shadow-2xl border border-gray-700/50 bg-gray-900/80 backdrop-blur-lg">
+    <div class="overflow-hidden shadow-2xl border border-gray-700/50 bg-black-900/80 backdrop-blur-lg">
       <table class="min-w-full text-left text-gray-300">
         <thead class="bg-neutral-800 text-gray-200 uppercase text-sm">
           <tr>
@@ -208,6 +208,7 @@
             <th class="px-6 py-3">Role</th>
             <th class="px-6 py-3">Department</th>
             <th class="px-6 py-3">Status</th>
+            <th class="px-6 py-3">Actions</th>
           </tr>
         </thead>
         <!-- 🔹 Dynamic tbody -->
@@ -218,6 +219,21 @@
       <div id="paginationControls" class="flex justify-center items-center space-x-2 py-4 bg-neutral-800/60"></div>
     </div>
   </main>
+<!-- Delete Confirmation Modal -->
+<div id="deleteModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+  <div class="bg-gray-800 rounded-xl p-6 w-96 shadow-lg">
+    <h2 class="text-lg font-semibold text-white mb-4">Confirm Deletion</h2>
+    <p class="text-gray-300 mb-6">Are you sure you want to delete this user?</p>
+    <div class="flex justify-end gap-3">
+      <button onclick="closeDeleteModal()" class="px-4 py-2 rounded-md bg-gray-600 hover:bg-gray-700 text-white">
+        Cancel
+      </button>
+      <button id="confirmDeleteBtn" class="px-4 py-2 rounded-md bg-red-600 hover:bg-red-700 text-white">
+        Delete
+      </button>
+    </div>
+  </div>
+</div>
 
   <script>
     // Dummy user data
@@ -257,91 +273,110 @@
       { username: "peter.wilson", email: "peter@army.com", role: "Admin", dept: "Logistics", status: "Inactive" },
      
     ];
+  const rowsPerPage = 9;
+  let currentPage = 1;
+  let deleteIndex = null;
 
-    const rowsPerPage = 9;
-    let currentPage = 1;
+  function renderTable() {
+    const tbody = document.getElementById("userTable");
+    tbody.innerHTML = "";
 
-    function renderTable() {
-      const tbody = document.getElementById("userTable");
-      tbody.innerHTML = "";
+    const start = (currentPage - 1) * rowsPerPage;
+    const end = start + rowsPerPage;
+    const pageUsers = users.slice(start, end);
 
-      const start = (currentPage - 1) * rowsPerPage;
-      const end = start + rowsPerPage;
-      const pageUsers = users.slice(start, end);
+    pageUsers.forEach((u, index) => {
+      const realIndex = start + index; // actual index in users array
+      tbody.innerHTML += `
+        <tr class="hover:bg-gray-800/60 transition">
+          <td class="px-6 py-4 font-medium">${u.username}</td>
+          <td class="px-6 py-4">${u.email}</td>
+          <td class="px-6 py-4">${u.role}</td>
+          <td class="px-6 py-4">${u.dept}</td>
+          <td class="px-6 py-4">
+            <span class="px-2 py-1 text-xs rounded-full ${u.status === 'Active'
+              ? 'bg-green-700 text-green-200'
+              : 'bg-red-700 text-red-200'}">${u.status}</span>
+          </td>
+          <td class="px-6 py-4 flex gap-2">
+            <button class="px-2 py-1 text-xs rounded-full bg-gray-700 text-gray-200">Edit</button>
+            <button onclick="openDeleteModal(${realIndex})" class="px-2 py-1 text-xs rounded-full bg-red-700 text-red-200">
+              Delete
+            </button>
+          </td>
+        </tr>
+      `;
+    });
+  }
 
-      pageUsers.forEach(u => {
-        tbody.innerHTML += `
-          <tr class="hover:bg-gray-800/60 transition">
-            <td class="px-6 py-4 font-medium">${u.username}</td>
-            <td class="px-6 py-4">${u.email}</td>
-            <td class="px-6 py-4">${u.role}</td>
-            <td class="px-6 py-4">${u.dept}</td>
-            <td class="px-6 py-4">
-              <span class="px-2 py-1 text-xs rounded-full ${u.status === 'Active' ? 'bg-green-700 text-green-200' : 'bg-red-700 text-red-200'}">${u.status}</span>
-            </td>
-          </tr>
-        `;
-      });
+  function renderPagination() {
+    const controls = document.getElementById("paginationControls");
+    controls.innerHTML = "";
+
+    const totalPages = Math.ceil(users.length / rowsPerPage);
+
+    for (let i = 1; i <= totalPages; i++) {
+      controls.innerHTML += `
+        <button onclick="goToPage(${i})"
+          class="px-3 py-1 rounded-full ${i === currentPage
+            ? 'bg-gray-600 text-white'
+            : 'bg-black text-gray-300 hover:bg-gray-600'}">
+          ${i}
+        </button>
+      `;
     }
+  }
 
-    function renderPagination() {
-      const controls = document.getElementById("paginationControls");
-      controls.innerHTML = "";
-
-      const totalPages = Math.ceil(users.length / rowsPerPage);
-
-      for (let i = 1; i <= totalPages; i++) {
-        controls.innerHTML += `
-          <button onclick="goToPage(${i})"
-            class="px-3 py-1 rounded-full ${i === currentPage ? 'bg-gray-600 text-white' : 'bg-black text-gray-300 hover:bg-gray-600'}">
-            ${i}
-          </button>
-        `;
-      }
-    }
-
-    function goToPage(page) {
-      currentPage = page;
-      renderTable();
-      renderPagination();
-    }
-
-    // Initial render
+  function goToPage(page) {
+    currentPage = page;
     renderTable();
     renderPagination();
-        // User profile dropdown
+  }
+
+  // 🔹 Delete Modal Logic
+  function openDeleteModal(index) {
+    deleteIndex = index;
+    document.getElementById("deleteModal").classList.remove("hidden");
+  }
+
+  function closeDeleteModal() {
+    deleteIndex = null;
+    document.getElementById("deleteModal").classList.add("hidden");
+  }
+
+  document.getElementById("confirmDeleteBtn").addEventListener("click", function () {
+    if (deleteIndex !== null) {
+      users.splice(deleteIndex, 1); // remove user
+      // If page is empty after delete, go back one page
+      const maxPage = Math.ceil(users.length / rowsPerPage);
+      if (currentPage > maxPage) currentPage = maxPage || 1;
+      renderTable();
+      renderPagination();
+      closeDeleteModal();
+    }
+  });
+
+  // 🔹 Initial render
+  renderTable();
+  renderPagination();
+</script>
+ <script>
+    // User dropdown toggle
     const userMenuBtn = document.getElementById('userMenuBtn');
     const userDropdown = document.getElementById('userDropdown');
-    if (userMenuBtn && userDropdown) {
-      userMenuBtn.addEventListener('click', () => {
-        userDropdown.classList.toggle('hidden');
-      });
-      document.addEventListener('click', (e) => {
-        if (!userMenuBtn.contains(e.target) && !userDropdown.contains(e.target)) {
-          userDropdown.classList.add('hidden');
-        }
-      });
-    }
+    userMenuBtn.addEventListener('click', () => {
+      userDropdown.classList.toggle('hidden');
+    });
+    document.addEventListener('click', (e) => {
+      if (!userMenuBtn.contains(e.target) && !userDropdown.contains(e.target)) {
+        userDropdown.classList.add('hidden');
+      }
+    });
   </script>
 
   <footer class="w-full bg-glass/70 p-8 backdrop-blur-md border-t border-glass-accent/10 text-center py-2 text-xs text-white mt-auto"
     style="backdrop-filter: blur(16px);">
     &copy; 2025 Soldier Management System
   </footer>
-  <script>
-     // User profile dropdown
-    const userMenuBtn = document.getElementById('userMenuBtn');
-    const userDropdown = document.getElementById('userDropdown');
-    if (userMenuBtn && userDropdown) {
-      userMenuBtn.addEventListener('click', () => {
-        userDropdown.classList.toggle('hidden');
-      });
-      document.addEventListener('click', (e) => {
-        if (!userMenuBtn.contains(e.target) && !userDropdown.contains(e.target)) {
-          userDropdown.classList.add('hidden');
-        }
-      });
-    }
-    </script>
 </body>
 </html>

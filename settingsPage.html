@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" class="dark">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,7 +32,6 @@
     body {
       background: linear-gradient(135deg, #000000 0%, #040405 100%);
     }
-
     .card-glassy::before {
       content: '';
       position: absolute;
@@ -42,17 +40,14 @@
       pointer-events: none;
       z-index: 1;
     }
-
     .card-glassy>* {
       position: relative;
       z-index: 2;
     }
-
     .sidebar-tooltip,
     .nav-tooltip {
       @apply absolute left-full top-1/2 -translate-y-1/2 ml-2 px-2 py-1 rounded bg-black/80 text-white text-xs opacity-0 pointer-events-none whitespace-nowrap z-50 transition-all duration-300;
     }
-
     .nav-tooltip {
       @apply absolute left-1/2 top-full mt-1 -translate-x-1/2 px-2 py-1 rounded bg-black/80 text-white text-xs opacity-0 pointer-events-none whitespace-nowrap z-50 transition-all duration-300;
     }
@@ -92,7 +87,6 @@
            00-9.33-4.936M9 17h6m-6 0a3 3 0 006 0m-6 0H4m6 0V9a6 6 0 
            0112 0v3c0 1.42-.79 2.79-1.595 3.595L20 17h-5" />
     </svg>
-
     <!-- Notification count -->
     <span id="notifCount"
       class="absolute -top-1 -right-1 min-w-[1.25rem] h-5 px-1.5 flex items-center justify-center

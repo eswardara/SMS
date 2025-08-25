@@ -491,7 +491,30 @@
     <button class="next-btn px-4 py-2 bg-green-600 text-white rounded font-bold">Finish</button>
       </div>
         </div>
-  
+  <!-- Alert Modal -->
+<div id="alertModal" class="fixed inset-0 flex items-center justify-center bg-black/60 hidden z-50">
+  <div class="bg-neutral-900 text-white rounded-2xl shadow-xl p-6 w-80 text-center">
+    
+    <!-- ✅ Green Tick Icon with Rounded Black Border -->
+    <div class="flex justify-center mb-3">
+      <div class="w-14 h-14 flex items-center justify-center rounded-full border-2 border-black bg-neutral-800">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+        </svg>
+      </div>
+    </div>
+
+    <h3 class="text-lg font-bold mb-2">User Successfully Created!</h3>
+    <p class="text-sm text-gray-300">The new user has been successfully created.</p>
+    
+    <button id="closeModal"
+      class="mt-4 px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg text-white font-semibold">
+      OK
+    </button>
+  </div>
+</div>
+
+
 
        <footer class="fixed bottom-0 left-0 w-full bg-glass/70 backdrop-blur-md border-t border-glass-accent/10 
                  text-center py-2 text-xs text-white"
@@ -554,6 +577,29 @@
       });
     }
     </script>
-</body>
+<script>
+  // Open modal when Finish button is clicked
+  const finishBtn = document.querySelector(".next-btn.bg-green-600");
+  const modal = document.getElementById("alertModal");
+  const closeModal = document.getElementById("closeModal");
 
+  if (finishBtn && modal && closeModal) {
+    finishBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      modal.classList.remove("hidden");
+    });
+
+    closeModal.addEventListener("click", () => {
+      modal.classList.add("hidden");
+    });
+
+    // Close when clicking outside the modal
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        modal.classList.add("hidden");
+      }
+    });
+  }
+</script>
+</body>
 </html>
