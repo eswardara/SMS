@@ -85,7 +85,7 @@
  <!-- Notifications Bell Icon -->
 <div class="relative">
   <button id="notifBtn" type="button" onclick="toggleNotifications(event)"
-          class="relative p-2 rounded-full hover:bg-glass-accent/20 focus:outline-none">
+          class="relative p-2 rounded-full hover:bg-black-800 focus:outline-none">
     <!-- Bell icon -->
     <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
       <path stroke-linecap="round" stroke-linejoin="round"
@@ -110,7 +110,7 @@
     <ul id="notifList" class="max-h-60 overflow-y-auto divide-y divide-gray-700">
       <!-- JS will insert notifications here -->
     </ul>
-    <div class="p-2 text-center text-xs text-gray-400 bg-gray-800">End of notifications</div>
+    <div class="p-2 text-center text-xs text-gray-400 bg-black-800">End of notifications</div>
   </div>
 </div>
 
@@ -136,7 +136,7 @@
 
     newUsers.forEach(u => {
       list.innerHTML += `
-        <li class="p-3 hover:bg-gray-800 transition">
+        <li class="p-3 hover:bg-black-800 transition">
           <p class="text-sm font-medium">${u.name}</p>
           <p class="text-xs text-gray-400">Added on ${u.date}</p>
         </li>
@@ -288,7 +288,7 @@
     pageUsers.forEach((u, index) => {
       const realIndex = start + index; // actual index in users array
       tbody.innerHTML += `
-        <tr class="hover:bg-gray-800/60 transition">
+        <tr class="hover:bg-black-800/60 transition">
           <td class="px-6 py-4 font-medium">${u.username}</td>
           <td class="px-6 py-4">${u.email}</td>
           <td class="px-6 py-4">${u.role}</td>
