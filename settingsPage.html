@@ -197,128 +197,173 @@
     </div>
 
     <!-- Tabs -->
-    <div class="flex space-x-3 mb-8">
-      <button class="px-4 py-2 bg-white text-black rounded-full">Account</button>
-      <button class="px-4 py-2 bg-neutral-800 text-gray-300 rounded-full">Notifications</button>
-      <button class="px-4 py-2 bg-neutral-800 text-gray-300 rounded-full">Sharing</button>
-      <button class="px-4 py-2 bg-neutral-800 text-gray-300 rounded-full">Update schedule</button>
-      <button class="px-4 py-2 bg-neutral-800 text-gray-300 rounded-full">Billing</button>
-      <button class="px-4 py-2 bg-neutral-800 text-gray-300 rounded-full">Questions</button>
+<div class="flex space-x-3 mb-8">
+  <button class="tab-btn px-4 py-2 rounded-full bg-white text-black" data-tab="account">Account</button>
+  <button class="tab-btn px-4 py-2 rounded-full bg-neutral-800 text-gray-300" data-tab="notifications">Notifications</button>
+  <button class="tab-btn px-4 py-2 rounded-full bg-neutral-800 text-gray-300" data-tab="sharing">Sharing</button>
+  <button class="tab-btn px-4 py-2 rounded-full bg-neutral-800 text-gray-300" data-tab="update">Update schedule</button>
+  <button class="tab-btn px-4 py-2 rounded-full bg-neutral-800 text-gray-300" data-tab="billing">Billing</button>
+  <button class="tab-btn px-4 py-2 rounded-full bg-neutral-800 text-gray-300" data-tab="questions">Questions</button>
+</div>
+
+
+
+    <!-- Account Tab (your original content, unchanged) -->
+    <div id="account" class="tab-content">
+      <!-- Profile Section -->
+      <section class="border-b border-gray-800 pb-6">
+        <h3 class="text-xl font-semibold mb-2 text-white">Profile</h3>
+        <p class="text-gray-400 mb-4">Set your account details</p>
+
+        <div class="grid grid-cols-3 gap-6 items-start">
+          <div class="col-span-2 grid grid-cols-2 gap-4">
+            <input type="text" placeholder="Name" value=""
+              class="bg-black border border-gray-700 rounded-lg p-3 text-white" />
+            <input type="text" placeholder="Surname" value=""
+              class="bg-black border border-gray-700 rounded-lg p-3 text-white" />
+            <input type="email" placeholder="Email" value=""
+              class="col-span-2 bg-black border border-gray-700 rounded-lg p-3 text-white" />
+          </div>
+          <div class="flex flex-col items-center space-y-3">
+            <img src="user.png" alt="User" class="rounded-full" width="50">
+            <button class="px-4 py-2 bg-neutral-800 rounded-lg text-sm text-white w-full">Edit photo</button>
+            <button class="px-4 py-2 bg-neutral-800 rounded-lg text-sm text-white w-full">🗑 Delete</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Timezone Section -->
+      <section class="border-b border-gray-800 pb-6 mb-6">
+        <h3 class="text-xl font-semibold mb-2 text-white">Timezone & preferences</h3>
+        <p class="text-gray-400 mb-4">Let us know the time zone and format</p>
+        <div class="grid grid-cols-3 gap-4">
+          <input type="text" value="New York" class="bg-black border border-gray-700 rounded-lg p-3 text-white" />
+          <select class="bg-black border border-gray-700 rounded-lg p-3 text-white">
+            <option>UTC/GMT -4 hours</option>
+          </select>
+          <select class="bg-black border border-gray-700 rounded-lg p-3 text-white">
+            <option>dd/mm/yyyy 00:00</option>
+          </select>
+        </div>
+      </section>
+
+      <!-- Motivation Section -->
+      <section class="border-b border-gray-800 pb-6 mb-6">
+        <h3 class="text-xl font-semibold mb-2 text-white">Motivation & Performance setup</h3>
+        <p class="text-gray-400 mb-4">Calibrate your desired activity levels</p>
+        <button class="text-sm text-blue-400 mb-6">Learn more about work time classification</button>
+        <div class="grid grid-cols-2 gap-6">
+          <div>
+            <p class="mb-2 text-white">Desired daily time utilization: <span class="font-bold">7 hrs</span></p>
+            <input type="range" min="1" max="12" value="7" class="w-full bg-gray-700 h-[2px] rounded-lg accent-white">
+          </div>
+          <div>
+            <p class="mb-2 text-white">Desired daily core work range: <span class="font-bold">3-6 hrs</span></p>
+            <input type="range" min="1" max="12" value="6" class="w-full bg-gray-700 h-[2px] rounded-lg accent-white">
+          </div>
+        </div>
+      </section>
+
+      <!-- Your Work Section -->
+      <section class="border-t border-gray-800 pt-6 mt-6">
+        <h3 class="text-xl font-semibold mb-2 text-white">Your work</h3>
+        <p class="text-gray-400 mb-4">Add info about your position</p>
+        <div class="grid grid-cols-2 gap-4 mb-4">
+          <input type="text" placeholder="Function" value="Design"
+            class="bg-black border border-gray-700 rounded-lg p-3 text-white" />
+          <input type="text" placeholder="Job Title" value="Team Lead designer"
+            class="bg-black border border-gray-700 rounded-lg p-3 text-white" />
+        </div>
+        <textarea placeholder="Responsibilities"
+          class="w-full bg-black border border-gray-700 rounded-lg p-3 text-white h-28"></textarea>
+      </section>
     </div>
 
-   <!-- Profile Section -->
-<section class="border-b border-gray-800 pb-6">
-  <h3 class="text-xl font-semibold mb-2 text-white">Profile</h3>
-  <p class="text-gray-400 mb-4">Set your account details</p>
-
-  <div class="grid grid-cols-3 gap-6 items-start">
-    <!-- Left: Inputs -->
-    <div class="col-span-2 grid grid-cols-2 gap-4">
-      <input type="text" placeholder="Name" value=""
-        class="bg-black border border-gray-700 rounded-lg p-3 text-white" />
-      <input type="text" placeholder="Surname" value=""
-        class="bg-black border border-gray-700 rounded-lg p-3 text-white" />
-      <input type="email" placeholder="Email" value=""
-        class="col-span-2 bg-black border border-gray-700 rounded-lg p-3 text-white" />
-        
+    <!-- Notifications Tab -->
+    <div id="notifications" class="tab-content hidden">
+      <h3 class="text-xl font-semibold mb-4">Notification Preferences</h3>
+      <label class="flex items-center space-x-2 mb-2">
+        <input type="checkbox" class="accent-white"> <span>Email Alerts</span>
+      </label>
+      <label class="flex items-center space-x-2 mb-2">
+        <input type="checkbox" class="accent-white"> <span>SMS Alerts</span>
+      </label>
+      <label class="flex items-center space-x-2">
+        <input type="checkbox" class="accent-white"> <span>Push Notifications</span>
+      </label>
     </div>
 
-    <!-- Right: User Photo & Buttons -->
-    <div class="flex flex-col items-center space-y-3 ">
-      <img src="user.png" alt="User" class="rounded-full" width="50">
-      <button class="px-4 py-2 bg-neutral-800 rounded-lg text-sm text-white w-full">Edit photo</button>
-      <button class="px-4 py-2 bg-neutral-800 rounded-lg text-sm text-white w-full">🗑 Delete</button>
-    </div>
-  </div>
-</section>
-
-
-    <!-- Timezone Section -->
-    <section class="border-b border-gray-800 pb-6 mb-6">
-      <h3 class="text-xl font-semibold mb-2 text-white">Timezone & preferences</h3>
-      <p class="text-gray-400 mb-4">Let us know the time zone and format</p>
-      <div class="grid grid-cols-3 gap-4">
-        <input type="text" value="New York" class="bg-black border border-gray-700 rounded-lg p-3 text-white" />
-        <select class="bg-black border border-gray-700 rounded-lg p-3 text-white">
-          <option>UTC/GMT -4 hours</option>
-        </select>
-        <select class="bg-black border border-gray-700 rounded-lg p-3 text-white">
-          <option>dd/mm/yyyy 00:00</option>
-        </select>
-      </div>
-    </section>
-
-    <!-- Motivation Section -->
-<section class="border-b border-gray-800 pb-6 mb-6">
-  <h3 class="text-xl font-semibold mb-2 text-white">Motivation & Performance setup</h3>
-  <p class="text-gray-400 mb-4">Calibrate your desired activity levels</p>
-  <button class="text-sm text-blue-400 mb-6">Learn more about work time classification</button>
-
-  <div class="grid grid-cols-2 gap-6">
-    <!-- Desired daily time utilization -->
-    <div>
-      <p class="mb-2 text-white">
-        Desired daily time utilization:
-        <span class="font-bold">7 hrs</span>
-      </p>
-      <input type="range" min="1" max="12" value="7"
-        class="w-full appearance-none bg-gray-700 h-[2px] rounded-lg
-               accent-white [&::-webkit-slider-thumb]:appearance-none
-               [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4
-               [&::-webkit-slider-thumb]:rounded-full
-               [&::-webkit-slider-thumb]:bg-white
-               [&::-moz-range-thumb]:w-4 [&::-moz-range-thumb]:h-4
-               [&::-moz-range-thumb]:rounded-full
-               [&::-moz-range-thumb]:bg-white">
-      <p class="text-gray-400 mt-2 text-sm">
-        Find the perfect allocation that suits your workflow and maximizes your potential.
-      </p>
+    <!-- Sharing Tab -->
+    <div id="sharing" class="tab-content hidden">
+      <h3 class="text-xl font-semibold mb-4">Sharing Options</h3>
+      <select class="bg-black border border-gray-700 rounded-lg p-3 text-white w-full mb-3">
+        <option>Private</option>
+        <option>Team Only</option>
+        <option>Public</option>
+      </select>
+      <textarea placeholder="Notes for collaborators" class="w-full bg-black border border-gray-700 rounded-lg p-3 text-white h-24"></textarea>
     </div>
 
-    <!-- Desired daily core work range -->
-    <div>
-      <p class="mb-2 text-white">
-        Desired daily core work range:
-        <span class="font-bold">3-6 hrs</span>
-      </p>
-      <input type="range" min="1" max="12" value="6"
-        class="w-full appearance-none bg-gray-700 h-[2px] rounded-lg
-               accent-white [&::-webkit-slider-thumb]:appearance-none
-               [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4
-               [&::-webkit-slider-thumb]:rounded-full
-               [&::-webkit-slider-thumb]:bg-white
-               [&::-moz-range-thumb]:w-4 [&::-moz-range-thumb]:h-4
-               [&::-moz-range-thumb]:rounded-full
-               [&::-moz-range-thumb]:bg-white">
-      <p class="text-gray-400 mt-2 text-sm">
-        Define the critical hours dedicated to your most important tasks,
-        ensuring heightened focus and productivity during peak performance times.
-      </p>
+    <!-- Update Schedule Tab -->
+    <div id="update" class="tab-content hidden">
+      <h3 class="text-xl font-semibold mb-4">Update Schedule</h3>
+      <select class="bg-black border border-gray-700 rounded-lg p-3 text-white w-full">
+        <option>Every day</option>
+        <option>Every week</option>
+        <option>Every month</option>
+      </select>
     </div>
-  </div>
-</section>
 
-<!-- Your Work Section -->
-<section class="border-t border-gray-800 pt-6 mt-6">
-  <h3 class="text-xl font-semibold mb-2 text-white">Your work</h3>
-  <p class="text-gray-400 mb-4">Add info about your position</p>
+    <!-- Billing Tab -->
+    <div id="billing" class="tab-content hidden">
+      <h3 class="text-xl font-semibold mb-4">Billing Information</h3>
+      <input type="text" placeholder="Credit Card Number" class="bg-black border border-gray-700 rounded-lg p-3 text-white w-full mb-3" />
+      <input type="text" placeholder="Expiry Date" class="bg-black border border-gray-700 rounded-lg p-3 text-white w-full mb-3" />
+      <input type="text" placeholder="CVV" class="bg-black border border-gray-700 rounded-lg p-3 text-white w-full mb-3" />
+    </div>
 
-  <div class="grid grid-cols-2 gap-4 mb-4">
-    <input type="text" placeholder="Function" value="Design"
-      class="bg-black border border-gray-700 rounded-lg p-3 text-white" />
-    <input type="text" placeholder="Job Title" value="Team Lead designer"
-      class="bg-black border border-gray-700 rounded-lg p-3 text-white" />
-  </div>
+    <!-- Questions Tab -->
+    <div id="questions" class="tab-content hidden">
+      <h3 class="text-xl font-semibold mb-4">Frequently Asked Questions</h3>
+      <ul class="space-y-3">
+        <li><p class="font-medium">Q: How do I reset my password?</p><p class="text-gray-400">A: Go to Account → Change Password.</p></li>
+        <li><p class="font-medium">Q: How do I upgrade my plan?</p><p class="text-gray-400">A: Visit Billing and select a higher tier.</p></li>
+        <li><p class="font-medium">Q: Can I export my data?</p><p class="text-gray-400">A: Yes, see Sharing options.</p></li>
+      </ul>
+    </div>
 
-  <textarea placeholder="Responsibilities"
-    class="w-full bg-black border border-gray-700 rounded-lg p-3 text-white h-28"></textarea>
-</section>
-   <footer class="fixed bottom-0 left-0 w-full bg-glass/70 backdrop-blur-md border-t border-glass-accent/10 
-                 text-center py-2 text-xs text-white"
-        style="backdrop-filter: blur(16px);">
-  &copy; 2025 Soldier Management System
-</footer>
   </main>
+
+  <footer class="fixed bottom-0 left-0 w-full bg-glass/70 backdrop-blur-md border-t border-glass-accent/10 text-center py-2 text-xs text-white">
+    &copy; 2025 Soldier Management System
+  </footer>
+<script>
+  const tabButtons = document.querySelectorAll(".tab-btn");
+  const tabContents = document.querySelectorAll(".tab-content");
+
+  tabButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      const target = button.dataset.tab;
+
+      // Reset all tabs to normal
+      tabButtons.forEach(btn => {
+        btn.classList.remove("bg-white", "text-black");
+        btn.classList.add("bg-neutral-700", "text-gray-300");
+      });
+
+      // Activate clicked tab (no hover effect needed)
+      button.classList.remove("bg-neutral-700", "text-gray-300");
+      button.classList.add("bg-white", "text-black");
+
+      // Hide all content
+      tabContents.forEach(content => content.classList.add("hidden"));
+
+      // Show only the selected tab content
+      document.getElementById(target).classList.remove("hidden");
+    });
+  });
+</script>
+
   
 <script>
      // User profile dropdown
